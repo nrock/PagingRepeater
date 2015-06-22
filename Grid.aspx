@@ -5,6 +5,14 @@
     <h3>Your application description page.</h3>
     <p>Use this area to provide additional information.</p>
     
+    
+    
+    
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server"> 
+        <ContentTemplate>
+            
+            
+
     <table class="table"> 
         <asp:Repeater ID="rGrid" runat="server"> 
             <ItemTemplate>
@@ -33,8 +41,8 @@
             </ItemTemplate> 
         </asp:Repeater> 
     </ul> 
-
-    
+</ContentTemplate>
+   </asp:UpdatePanel>
     
 
 </asp:Content>
