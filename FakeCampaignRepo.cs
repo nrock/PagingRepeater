@@ -69,5 +69,10 @@ namespace WebApplication37
             var c = _campaigns.First(x => x.Id == id);
             _campaigns.Remove(c);
         }
+        
+        public void Add(Campaign campaign)
+        {
+            _campaigns.Add(campaign); 
+        }
     }
 }

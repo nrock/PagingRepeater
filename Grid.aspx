@@ -27,8 +27,8 @@
             </ItemTemplate> 
         </asp:Repeater>
     </table>
-    
-     
+    <asp:LinkButton ID="lnkAdd" runat="server" OnClick="Add_Record"  Text="Add" ></asp:LinkButton> 
+   
     <ul class="pagination pagination-lg">  
         <asp:Repeater ID="rPager" runat="server"> 
             <ItemTemplate>

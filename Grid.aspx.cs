@@ -59,6 +59,12 @@ namespace WebApplication37
             throw new NotImplementedException();
         }
 
+        protected void Add_Record(object sender, EventArgs e)
+        {
+            _campaignRepo.Add(new Campaign{Category = "NewCategory",Date = DateTime.Now,Email = "new@newmail.com",Name = "campaign new",TemplateName = "tempnew"});
+            LoadGrid();
+        }
+
         protected void rGrid_OnItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
