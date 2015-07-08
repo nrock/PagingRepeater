@@ -54,6 +54,20 @@ namespace WebApplication37
         }
 
 
+        protected void OnClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void rGrid_OnItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+            var x = e.CommandName;
+            int y = Int32.Parse(e.CommandArgument.ToString());
+            _campaignRepo.Delete(y);
+                
+            this.LoadGrid();
+        }
     }
 
     public class Pager

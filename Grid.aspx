@@ -14,7 +14,7 @@
             
 
     <table class="table"> 
-        <asp:Repeater ID="rGrid" runat="server"> 
+        <asp:Repeater ID="rGrid" runat="server" OnItemCommand="rGrid_OnItemCommand"> 
             <ItemTemplate>
                 <tr> 
                     <td><%#((Campaign) Container.DataItem).Name %></td> 
@@ -22,6 +22,7 @@
                     <td><%#((Campaign) Container.DataItem).Category %></td> 
                     <td><%#((Campaign) Container.DataItem).Email %></td> 
                     <td><%# string.Format("{0:MM/dd/yyyy}",((Campaign) Container.DataItem).Date) %></td>
+                    <td><asp:LinkButton runat="server" CommandArgument="<%#((Campaign) Container.DataItem).Id %>" CommandName="Delete" >delete</asp:LinkButton></td>
                 </tr>
             </ItemTemplate> 
         </asp:Repeater>
