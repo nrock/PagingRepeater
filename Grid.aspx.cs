@@ -14,7 +14,7 @@ namespace WebApplication37
         public Grid()
         {
             _campaignRepo = new FakeCampaignRepo();
-            _pageSize = 5;
+            _pageSize = 15;
             _pageNumber = 0;
         }
 
@@ -61,8 +61,30 @@ namespace WebApplication37
 
         protected void Add_Record(object sender, EventArgs e)
         {
-            _campaignRepo.Add(new Campaign{Category = "NewCategory",Date = DateTime.Now,Email = "new@newmail.com",Name = "campaign new",TemplateName = "tempnew"});
-            LoadGrid();
+            var c = new Campaign();
+            c.Category = this.tbCategory.Text;
+            c.Name = this.tbName.Text;
+            c.Email = this.tbEmail.Text;
+            c.TemplateName = this.tbTemplateName.Text;
+            c.Date = DateTime.Now;
+
+            var valid = (this.tbName.Text != "" && this.tbEmail.Text != "" && this.tbCategory.Text != "");
+            if (valid)
+            {
+                _campaignRepo.Add(c);
+                LoadGrid();
+                lblError.Text = "";
+                this.tbCategory.Text = "";
+                this.tbName.Text = "";
+                this.tbEmail.Text = "";
+                this.tbTemplateName.Text = "";
+                this.hEditMode.Text = "false";
+            }
+            else
+            {
+                lblError.Text = "invalid entry";
+                this.hEditMode.Text = "true";
+            }
         }
 
         protected void rGrid_OnItemCommand(object source, RepeaterCommandEventArgs e)
@@ -74,12 +96,9 @@ namespace WebApplication37
                 
             this.LoadGrid();
         }
-    }
 
-    public class Pager
-    {
-        public string Text { get; set; }
-        public string Style { get; set; }
-        public int PageValue { get; set; }
+        protected void rGrid_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        { 
+        }
     }
 }

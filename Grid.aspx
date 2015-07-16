@@ -14,21 +14,37 @@
             
 
     <table class="table"> 
-        <asp:Repeater ID="rGrid" runat="server" OnItemCommand="rGrid_OnItemCommand"> 
+        <asp:Repeater ID="rGrid" runat="server" OnItemCommand="rGrid_OnItemCommand" OnItemDataBound="rGrid_OnItemDataBound"  > 
             <ItemTemplate>
                 <tr> 
-                    <td><%#((Campaign) Container.DataItem).Name %></td> 
-                    <td><%#((Campaign) Container.DataItem).TemplateName %></td> 
-                    <td><%#((Campaign) Container.DataItem).Category %></td> 
-                    <td><%#((Campaign) Container.DataItem).Email %></td> 
-                    <td><%# string.Format("{0:MM/dd/yyyy}",((Campaign) Container.DataItem).Date) %></td>
-                    <td><asp:LinkButton runat="server" CommandArgument="<%#((Campaign) Container.DataItem).Id %>" CommandName="Delete" >delete</asp:LinkButton></td>
+                    <td><asp:Label runat="server" Text="<%#((Campaign) Container.DataItem).Name %>"></asp:Label> </td> 
+                    <td><asp:Label runat="server" Text="<%#((Campaign) Container.DataItem).TemplateName %>"></asp:Label>  </td> 
+                    <td><asp:Label runat="server" Text="<%#((Campaign) Container.DataItem).Category %>"></asp:Label> </td> 
+                    <td><asp:Label runat="server" Text="<%#((Campaign) Container.DataItem).Email %>"></asp:Label> </td> 
+                    <td> <%# string.Format("{0:MM/dd/yyyy}",((Campaign) Container.DataItem).Date) %></td>
+                    <td>
+                        <asp:LinkButton runat="server" CommandArgument="<%#((Campaign) Container.DataItem).Id %>"
+                            CommandName="Delete">delete</asp:LinkButton> 
+                    </td>
                 </tr>
-            </ItemTemplate> 
+            </ItemTemplate>  
         </asp:Repeater>
+          <tr class=" new-record"   > 
+            <td><asp:TextBox ID="tbName" runat="server" ></asp:TextBox> </td> 
+            <td><asp:TextBox ID="tbTemplateName"  runat="server" ></asp:TextBox>  </td> 
+            <td><asp:TextBox ID="tbCategory"  runat="server" ></asp:TextBox> </td> 
+            <td><asp:TextBox ID="tbEmail"  runat="server" ></asp:TextBox> </td> 
+            <td>  </td>
+            <td>
+                <asp:LinkButton runat="server"  CssClass="save-click"  OnClick="Add_Record"    >save</asp:LinkButton>
+                <a   class="cancel-add-record" >cancel</a> 
+            </td>
+        </tr>
     </table>
-    <asp:LinkButton ID="lnkAdd" runat="server" OnClick="Add_Record"  Text="Add" ></asp:LinkButton> 
-   
+    <asp:label ID="lblError"  ForeColor="Red" runat="server"></asp:label>  
+    <asp:Label Id="hEditMode" CssClass="hEditMode hidden"   runat="server" Text="false"></asp:Label>
+    <a class="add-record toggle-click toggle-record"  >add</a>  
+    <br />
     <ul class="pagination pagination-lg">  
         <asp:Repeater ID="rPager" runat="server"> 
             <ItemTemplate>
@@ -42,8 +58,52 @@
             </ItemTemplate> 
         </asp:Repeater> 
     </ul> 
+    
+
 </ContentTemplate>
    </asp:UpdatePanel>
     
 
+</asp:Content>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="script" runat="server">
+    <script type="text/javascript">
+        $(function () {
+            $('.new-record').hide(); 
+        });
+
+        function AddRecordMode() {
+            console.log('AddRecordMode');
+            $('.add-record').hide();
+            $('.new-record').show();
+            $('.hEditMode').text('true');
+        }
+
+        function NonAddMode() {
+            console.log('NonAddMode');
+            $('.add-record').show();
+            $('.new-record').hide();
+            $('.hEditMode').text('false');
+        }
+
+        function pageLoad() {
+            var editMode = $('.hEditMode').text();
+            console.log('pageload ' + editMode); 
+            if (editMode === 'true') {
+                AddRecordMode();
+            } else {
+                NonAddMode();
+            }
+
+            $('.add-record').click(function () {
+                AddRecordMode();
+            });
+            $('.cancel-add-record').click(function () {
+                NonAddMode();
+            }); 
+
+        }
+
+    </script>
 </asp:Content>

@@ -22,6 +22,7 @@ namespace WebApplication37
                     var i = 1;
                     campaigns.Add(new Campaign { Id=1,  Name= "aaaa", Email= "aaaa@abc.com", TemplateName= "Template a", Category= "Summer",   Date=date.AddDays(-(--i)) });
                     campaigns.Add(new Campaign { Id=2,  Name= "bbbb", Email= "bbbb@abc.com", TemplateName= "Template b", Category= "Winter",   Date=date.AddDays(-(--i)) });
+                    /*
                     campaigns.Add(new Campaign { Id=3,  Name= "cccc", Email= "cccc@abc.com", TemplateName= "Template c", Category= "Summer",   Date=date.AddDays(-(--i)) });
                     campaigns.Add(new Campaign { Id=4,  Name= "dddd", Email= "dddd@abc.com", TemplateName= "Template d", Category= "Winter",   Date=date.AddDays(-(--i)) });
                     campaigns.Add(new Campaign { Id=5,  Name= "eeee", Email= "eeee@abc.com", TemplateName= "Template e", Category= "Holiday",  Date=date.AddDays(-(--i)) });
@@ -41,6 +42,7 @@ namespace WebApplication37
                     campaigns.Add(new Campaign { Id=19, Name= "ssss", Email= "ssss@abc.com", TemplateName= "Template s", Category= "Memorial", Date=date.AddDays(-(--i)) });
                     campaigns.Add(new Campaign { Id=20, Name= "tttt", Email= "tttt@abc.com", TemplateName= "Template t", Category= "Winter",   Date=date.AddDays(-(--i)) });
                     campaigns.Add(new Campaign { Id=21, Name= "uuuu", Email= "uuuu@abc.com", TemplateName= "Template u", Category= "Winter",   Date=date.AddDays(-(--i)) });
+                    */
                     HttpContext.Current.Session[_campaignSessionKey] = campaigns; 
                 }
                 else

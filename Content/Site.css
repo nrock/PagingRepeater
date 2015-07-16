@@ -36,3 +36,10 @@ input[type="select"] {
         padding: 0;
     }
 }
+
+
+
+ input.textbox-readonly:focus{
+    outline: 0;
+}
+ 
